@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/favorites_screen.dart';
+import 'package:meals_app/widgets/maindrawer.dart';
 
 class TabsScreens extends StatefulWidget {
   const TabsScreens({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _TabsScreensState extends State<TabsScreens> {
       appBar: AppBar(
         title: Text((_pages[_selectedPageIndex]['title'] as String)),
       ),
-      drawer: Drawer(),
+      drawer: MainDrawer(),
       body: (_pages[_selectedPageIndex]['page'] as Widget),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {

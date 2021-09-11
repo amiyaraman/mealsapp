@@ -36,58 +36,65 @@ class MealDetail extends StatelessWidget {
       return element.id == mealId;
     });
     return Scaffold(
-        appBar: AppBar(
-          title: Text('${selectedMeal.title}'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 300,
-                width: double.infinity,
-                child: Image.network(
-                  selectedMeal.imageUrl,
-                  fit: BoxFit.cover,
-                ),
+      appBar: AppBar(
+        title: Text('${selectedMeal.title}'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(
+                selectedMeal.imageUrl,
+                fit: BoxFit.cover,
               ),
-              buildHeadingTitile(context: context, child: 'Ingredients'),
-              buildItemList(
-                context: context,
-                childsend: ListView.builder(
-                  itemCount: selectedMeal.ingredients.length,
-                  itemBuilder: (ctx, index) {
-                    return Card(
-                      color: Theme.of(context).accentColor,
-                      child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                          child: Text(selectedMeal.ingredients[index])),
-                    );
-                  },
-                ),
+            ),
+            buildHeadingTitile(context: context, child: 'Ingredients'),
+            buildItemList(
+              context: context,
+              childsend: ListView.builder(
+                itemCount: selectedMeal.ingredients.length,
+                itemBuilder: (ctx, index) {
+                  return Card(
+                    color: Theme.of(context).accentColor,
+                    child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                        child: Text(selectedMeal.ingredients[index])),
+                  );
+                },
               ),
-              buildHeadingTitile(context: context, child: 'Steps'),
-              buildItemList(
-                context: context,
-                childsend: ListView.builder(
-                  itemCount: selectedMeal.steps.length,
-                  itemBuilder: (ctx, index) {
-                    return Column(children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          child: Text('#${(index + 1)}'),
-                        ),
-                        title: Text('${selectedMeal.steps[index]}'),
+            ),
+            buildHeadingTitile(context: context, child: 'Steps'),
+            buildItemList(
+              context: context,
+              childsend: ListView.builder(
+                itemCount: selectedMeal.steps.length,
+                itemBuilder: (ctx, index) {
+                  return Column(children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: Text('#${(index + 1)}'),
                       ),
-                      Divider(
-                        color: Colors.greenAccent,
-                      )
-                    ]);
-                  },
-                ),
-              )
-            ],
-          ),
-        ));
+                      title: Text('${selectedMeal.steps[index]}'),
+                    ),
+                    Divider(
+                      color: Colors.greenAccent,
+                    )
+                  ]);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
+        child: Icon(Icons.delete),
+      ),
+    );
   }
 }
